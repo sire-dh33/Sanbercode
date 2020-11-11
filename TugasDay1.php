@@ -5,14 +5,14 @@
 
         public function atraksi()
         {
-            if ($this->nama == "Elang")
-            {
-                return "<br> Elang menggunakan abilitynya untuk Terbang Tinggi <br> <br>";
-            }
-            else if ($this->nama == "Harimau")
-            {
-                return "<br> Harimau menggunakan abilitynya untuk Lari Cepat <br> <br>";
-            }
+            // if ($this->nama == "Elang")
+            // {
+                return "<br> $this->nama menggunakan abilitynya untuk $this->keahlian . . .<br> <br>";
+            // }
+            // else if ($this->nama == "Harimau")
+            // {
+            //     return "<br> Harimau menggunakan abilitynya untuk $this->keahlian . . . <br> <br>";
+            // }
         }
     }
 
@@ -20,31 +20,31 @@
     {
         public $attackPower, $defencePower;
 
-        public function serang()
+        public function serang($lawan)
         {
-            if ($this->nama == "Elang")
-            {
-                return "<br>> Elang menyerang Harimau <br>" . $this->diserang();
-            }
-            else if ($this->nama == "Harimau")
-            {
-                return "<br>> Harimau menyerang Elang <br>" . $this->diserang();
-            }
+            // if ($this->nama == "Elang")
+            // {
+            //     return "<br>> Elang menyerang Harimau <br>" . $this->diserang();
+            // }
+            // else if ($this->nama == "Harimau")
+            // {
+                return "<br>> $this->nama menyerang $lawan->nama <br>" . $this->diserang($lawan);
+            // }
 
         }
 
-        public function diserang()
+        public function diserang($lawan)
         {
-            if ($this->nama == "Elang")
-            {
-                $this->darah -= $this->attackPower/$this->defencePower;
-                return "------- <br> Harimau sedang Diserang, Darah ".$this->nama." tersisa ... ". $this->darah."<br>";
-            }
-            else if ($this->nama == "Harimau")
-            {
-                $this->darah -= $this->attackPower/$this->defencePower;
-                return "------- <br> Elang sedang Diserang, Darah ".$this->nama." tersisa ... ". $this->darah."<br>";
-            }
+            // if ($this->nama == "Elang")
+            // {
+            //     $this->darah -= $this->attackPower/$this->defencePower;
+            //     return "------- <br> Harimau sedang Diserang, Darah ".$this->nama." tersisa ... ". $this->darah."<br>";
+            // }
+            // else if ($this->nama == "Harimau")
+            // {
+                $lawan->darah -= $this->attackPower/$lawan->defencePower;
+                return "------- <br> $lawan->nama sedang Diserang, Darah $lawan->nama tersisa ...  $lawan->darah <br>";
+            // }
         }
     }
 
@@ -89,13 +89,15 @@
     echo $elang->GetInfoHewan();
     echo $harimau->GetInfoHewan();
 
-    echo $elang->serang();
-    echo $elang->serang();
-    echo $harimau->serang();
-    echo $harimau->serang();
-    echo $harimau->serang();
+    echo $elang->serang($harimau);
+    echo $elang->serang($harimau);
+    echo $harimau->serang($elang);
+    echo $harimau->serang($elang);
+    echo $harimau->serang($elang);
     
     echo $elang->atraksi();
     echo $harimau->atraksi();
 
+    echo $elang->GetInfoHewan();
+    echo $harimau->GetInfoHewan();
   ?>
