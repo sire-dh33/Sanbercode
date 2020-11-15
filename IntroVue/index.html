@@ -4,65 +4,30 @@
     <meta charset="UTF-8">
     <title>Tugas VueJs 1</title>
     <hr>
-        <p><strong>Vue Js - Getting Started</strong></p>
+        <p><strong>Simple Comment & Vote Systems</strong></p>
     <hr>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
 </head>
 <body>
     <div id="app">
-        <template>
-            <ul style="list-style-type:none;">
-                <li v-for="(item) of lists"> 
-                    <br> <button v-on:click="plus">+</button>
-                    <br>{{ item }} || 14-11-2020 || Score :  {{counter}}    <br> 
-                    <button v-on:click="min" >-</button> <br>
-                </li>
-            </ul>
-        </template>
-        <li v-else>List Belum Tersedia... </li>
+        <ul>
+            <comments v-for="comment in datacomments" v-bind:comment="comment"></comments>
+        </ul>
 
-        <!-- <button v-on:click="comments[] += 1">+</button>
-            <dt>{{}} {{ counter }}</dt>
-        <button v-on:click="counter -= 1">-</button> -->
-        <p> <textarea type="text" placeholder="Tulis Komentar..." v-on:keyup.enter="enter" cols="50" rows="10"></textarea> </p>
+        <textarea v-model="commenttxt" placeholder="Tulis Komentar..." v-on:keyup.enter="postComment" cols="60" rows="10"></textarea>
     </div>
 
+    <template id="comments-template">
+        <div>
+            <button v-on:click="plusMethod" v-bind:style="plusClicked ? { 'background-color': '#a6c8ff' } : null" >+</button>
+            <div>{{ comment.body }} || {{ comment.date }} || Score : {{ computedscore }} </div>
+            <button v-on:click="minusMethod" v-bind:style="minusClicked ? { 'background-color': '#ffb0a6' } : null" >-</button>
+            <br> <br>
+        </div>
+    </template>
 
-    <script>
-        var viewapp = new Vue({
-            el: "#app",
-            data: {
-                lists: [],
-                counter: 0
-            },
-            methods: {
-                enter: function(event){
-                    // let i=0
-                    let text = event.target.value
-                    this.lists.push(text)
-                    event.target.value = ""
-                    // this.counter[i].push(0)
-                    // // i++
-                    // 
-                    // if (i >= 1) {
-                    //     this.counter.push(0);
-                    // }
-                    // i++
-                    },
-                  
-                    plus: function(event){
-                        this.counter ++
-                        console.log(this.counter)
-                    },
 
-                    min: function(event){
-                        this.counter --
-                        console.log(this.counter)
-                    }  
-                },
-            }
-        )
-    </script>
+    <script src="indexscr.js"></script>
 </body>
 </html>
