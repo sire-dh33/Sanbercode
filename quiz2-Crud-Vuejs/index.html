@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Vue Js</title>
+    <hr>
+        <p><strong>Quiz 2 - Vue Js</strong></p>
+    <hr>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+</head>
+<body>
+    <div id="app">
+        <input v-model="usertxt" v-bind:usertxt="usertxt"> <button @click="postdata">add</button>
+
+        <ul>
+            <users v-for="user in users" :user="user"></users>
+        </ul>
+    </div>
+
+    <template id="users-template">
+        <div>
+            <li>
+                {{ user.name }} ||
+                <button @click="edit(user.name)">edit</button>
+                <button @click="del()">delete</button>
+            </li>
+            <br>
+        </div>
+    </template>
+    
+    <script src="quiz2.js"></script>
+</body>
+</html>
